@@ -205,7 +205,7 @@ BackFoundLine:
 	startReadVar--;
 	//cout << "IF Command :  _" << to_string(startReadVar) << "_  . VMAX :  _" << to_string(VarSpaceMax) << "_" << endl;
 	if (startReadVar == VarSpaceMax) {
-		cout << "Var Not Found" << endl;
+		cout << "Var Not Found :  _" << VarHead << "_" << endl;
 		return;
 	}
 

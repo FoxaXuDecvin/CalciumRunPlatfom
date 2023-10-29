@@ -40,6 +40,10 @@ string PartRead(string Info, string StartMark, string EndMark) {
 		readbuffer = Info[backread];
 	}
 
+	if (backread - CurrentRead ==1){
+		return "partread.err.emptydata";
+	}
+
 	while(true){
 		ReadCheck = Info[CurrentRead];
 		tempInfo = tempInfo + ReadCheck;
@@ -299,4 +303,39 @@ string ReplaceChar(string info, string replaceword, string nword) {
 		//cout << "Return Data :  _" << info << "_" << endl;
 		return info;
 	}
+}
+
+void coutll(){
+	if (ListWARNING == 0){
+		cout << "-----------------------------WARNING------------------------------" <<endl;
+		ListWARNING = 1;
+		return;
+	}
+	else {
+		cout << "-------------------------------END--------------------------------" <<endl;
+		cout <<endl;
+		ListWARNING = 0;
+		return;
+	}
+	return;
+}
+
+int SpawnRandomNum(int min, int max) {
+
+	string minb, maxb;
+	minb = to_string(min);
+	maxb = to_string(max);
+
+	//string chars = "Min :  " + minb + "   Max :   " + maxb + "  Bug Report";
+	//MessageBox(0, chars.c_str(), "MXBug Report", MB_OK);
+
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dis(min, max); // ����i-a֮����������
+	int outdata = dis(gen);
+	
+	//string dis_str = to_string(dis(gen));
+	//MessageBox(0,dis_str.c_str(),"Bug check",MB_OK);
+	
+	return dis(gen);
 }

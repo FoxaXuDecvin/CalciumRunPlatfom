@@ -1,20 +1,12 @@
 #include"TextProces.h"
-#include"Verinfo.h"
-#include"CalciumKernel.h"
+#include"CalciumShell.h"
 
 using namespace std;
 
 int main(int argc,char* argv[]){
     if(argc == 1){
-        cout << "Calcium Run Platfom. VerCode " << Str_VerCode <<endl;
-        cout << "Copyright FoxaXu Software@" <<endl;
-        cout << "Version :     " << VersionCode <<endl;
-        cout << "Code Name :   " << CodeName << endl;
-        cout << "Info :        " << VerNotice << endl;
-        cout << "Calcium is a Open Source Software. if you want get more info" <<endl;
-        cout << "Please visit https://calcium.foxaxu.com" << endl;
-        cout << "Please add \"-cascript <RunFile>\" in command" <<endl;
-        cout << endl;
+        cout << "Calcium Run Platfom. " << CodeName << " " << Str_VerCode <<endl;
+        OpenCaShell();
         cout << endl;
         return 1;
     }
@@ -33,6 +25,10 @@ int main(int argc,char* argv[]){
         }
 
         if (readbuffer == "-cascript"){
+            fileswitch = 1;
+            continue;
+        }
+        if (readbuffer == "-ca"){
             fileswitch = 1;
             continue;
         }
@@ -59,7 +55,7 @@ int main(int argc,char* argv[]){
     }
 
     if (RunScript == "NOSET"){
-        cout << "Use \"-cascript <file>\" Run Script" << endl;
+        cout << "Use \"-cascript/-ca <file>\" Run Script" << endl;
         return 0;
     }
     if(check_file_existence(RunScript)){}

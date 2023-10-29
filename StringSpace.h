@@ -29,3 +29,8 @@ int afterRollExit = 0;
 int charnxmark = 0;
 
 int ScriptLine = 1;
+
+int ListWARNING = 0;
+
+//Text
+string YearInfo = "2022-2023";

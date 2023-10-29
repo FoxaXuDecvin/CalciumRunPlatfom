@@ -5,6 +5,7 @@
 #include<string>
 #include<string.h>
 #include<fstream>
+#include<random>
 
 //Exist Cpp Header
 #include"StringSpace.h"

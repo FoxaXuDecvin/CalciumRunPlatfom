@@ -2,9 +2,9 @@
 
 using namespace std;
 
-string VersionCode = "Spark-Core_Rebuild_Version_of_Calcium";
-string CodeName = "SparkCore";
-string VerNotice = "SparkCore_Build_DeveloperPreview";
+string VersionCode = "Spark-Core_Project_rebuild";
+string CodeName = "SparkCore_Build";
+string VerNotice = "SparkCore_Build_Stage_1";
 string RunPlatfom = "Windows (MSVC Version)";
 
 int VerCode = 4102;

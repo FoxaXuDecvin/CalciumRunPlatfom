@@ -21,6 +21,11 @@ int rollscript(string RollFile){
         }
         cmdbuffer = HeadSpaceClean(cmdbuffer);
 
+         if (cmdbuffer == ""){
+            //EmptyInfo
+            continue;
+        }
+
         if (cmdbuffer == "overline"){
             return 1000;
         }      
@@ -53,14 +58,12 @@ int CMDCore(){
             //calcium Notice
             return 0;
         }
-        if (cmdbuffer == ""){
-            //EmptyInfo
-            return 0;
-        }
         if(SizeRead(cmdbuffer,4)=="cout"){
             //Output Text
             if (charTotal(cmdbuffer,"\"") != 2){
+                coutll();
                 cout << "Script Exception. Line: " << to_string(ScriptLine) << " . Cout Command Error :   QUOTATION FORMAT ERROR" << endl;
+                coutll();
                 return 0;
             }
             readbuffer = PartRead(cmdbuffer,"\"","\"");
@@ -70,7 +73,9 @@ int CMDCore(){
         if (SizeRead(cmdbuffer,6)=="system"){
             //Win/Linux Console Command
             if (charTotal(cmdbuffer,"\"") != 2){
+                coutll();
                 cout << "Script Exception. Line: " << to_string(ScriptLine) << " . Cout Command Error :   TOO MANY QUOTATION" << endl;
+                coutll();
                 return 0;
             }
             readbuffer = PartRead(cmdbuffer,"\"","\"");
@@ -91,11 +96,15 @@ int CMDCore(){
         if (SizeRead(cmdbuffer,3)=="var"){
             //Create VarSpace
             if(charTotal(cmdbuffer,"&")!=2){
+                coutll();
                 cout << "Script Exception. Line: " << to_string(ScriptLine) << " . Create Var Error :   SORT FORMAT ERROR" << endl;
+                coutll();
                 return 0;
             }
             if(charTotal(cmdbuffer,"\"")!=2){
+                coutll();
                 cout << "Script Exception. Line: " << to_string(ScriptLine) << " . Create Var Error :   SORT FORMAT ERROR" << endl;
+                coutll();
                 return 0;
             }
             readbufferB = PartRead(cmdbuffer,"&","&");//VarName
@@ -104,7 +113,9 @@ int CMDCore(){
             //cout << "Create VarSpace Info  " << readbufferA << endl;
             numbuffer = varspaceadd(readbufferB,readbufferA);
             if (numbuffer == 1){
+                coutll();
                 cout << "Var :  " << readbuffer << "  Create Failed" <<endl;
+                coutll();
                 return 0;
             }
             return 0;
@@ -129,8 +140,10 @@ int CMDCore(){
 
             if(check_file_existence(readbufferA)){}
             else {
+                coutll();
                 cout << "Failed to Include :  _" << readbufferA << "_." <<endl;
                 cout << "Please Check is file exist" <<endl;
+                coutll();
                 return 0;
             }
 
@@ -138,19 +151,25 @@ int CMDCore(){
                 int a = rollscript(readbufferA);
                 if (a == 1001){
                     //Return UnknownError
+                    coutll();
                     cout << "Include File Return Error" << endl;
+                    coutll();
                 }
                 if (a == 1002){
                     //Return FileDestroy
+                    coutll();
                     cout << "Include Run Error" << endl;
                     cout << "Read Failed :  This File is Destroy." <<endl;
                     cout << "Include File : _" << readbufferA << "_" << endl;
+                    coutll();
                 }
                 break;
             }
             return 0;
         }
-        cout << "Script Exception. Line: " << to_string(ScriptLine) << " . Unknown Command :   " << cmdbuffer << endl;
-        cout << "  In File :  _" << RunScript << "_" << endl;
+        coutll();
+        cout << "Script Exception. Line: " << to_string(ScriptLine) << " . Unknown Command :   -" << cmdbuffer << "-" << endl;
+        cout << "    -In File :  _" << RunScript << "_ -" << endl;
+        coutll();
         return 0;
 }
